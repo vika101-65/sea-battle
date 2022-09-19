@@ -1,0 +1,32 @@
+.row-container {
+  border: 1px solid black;
+  width: 320px;
+  height: 320px;
+  margin: 20px;
+}
+
+div[data-cell] {
+  border: 1px solid black;
+  width: 30px;
+  height: 30px;
+  /* box-sizing: border-box; */
+}
+
+.row-label {
+  position: absolute;
+  font-size: 17px;
+  right: 100%;
+  top: 15%;
+  padding-right: 3px;
+}
+
+.col-label {
+  position: absolute;
+  padding-left: 7px;
+  width: 100%;
+  bottom: 100%;
+}
+
+.css-m69qwo-MuiStack-root {
+  position: relative;
+}

@@ -1,0 +1,41 @@
+.ship {
+	position: absolute;
+	top: 0;
+	left: 0;
+	/* margin: -3px; */
+	border: 1px solid #1fa4d0;
+	background: rgba(105, 217, 231, 0.45);
+	width: 30px;
+	height: 30px;
+	/* display: inline-block; */
+}
+
+.ship-row-1 {
+}
+
+.ship-row-2 {
+	width: 62px;
+}
+
+.ship-row-3 {
+	width: 94px;
+}
+
+.ship-row-4 {
+	width: 126px;
+}
+
+.ship-column-1 {
+}
+
+.ship-column-2 {
+	height: 62px;
+}
+
+.ship-column-3 {
+	height: 94px;
+}
+
+.ship-column-4 {
+	height: 126px;
+}
