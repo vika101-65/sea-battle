@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Battle } from '../share/battle/battle.tsx';
 import { Ship } from '../share/ship/ship.tsx';
 import Table from '../share/table/table.tsx';
 
@@ -24,14 +25,13 @@ const ships: ShipSize[] = [
 ];
 
 export function Field() {
-  const [allShops, setAllShops] = useState(ships);
+  const [allShips, setAllShops] = useState(ships);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
 
   const moveShip = (id, e) => {
-    const newShips = allShops.map((item) => {
-      if (item.id === id && e.buttons === 1) {
-        console.log(e); 
+    const newShips = allShips.map((item) => {
+      if (item.id === id && e.buttons === 1) {console.log('e', e)
         item.startX = x - e.target.offsetWidth/2;
         item.startY = y - e.target.offsetHeight/2; 
         console.log(item);
@@ -47,12 +47,22 @@ export function Field() {
       setY(event.clientY);
   }
 
+  const changeDirectionShip = (id) => {
+    const newShips = allShips.map((item) => {
+      if(item.id === id) {
+        item.direction = item.direction === "row" ? "column" : "row" ;
+      }
+      return item;
+    })
+  }
+
   return (
     <div className='pier'
       onMouseMove={(e) => onMouseMove(e)}
     >
       <Table />
-      <Ship ships={allShops} moveShip={moveShip}/>
+      <Ship ships={allShips} moveShip={moveShip} changeDirectionShip={changeDirectionShip}/>
+      <Battle/>
     </div>
   )
 }

@@ -1,20 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Shipview.css';
 import { ShipSize } from '../../field/field'
 
-export function Ship({ ships, moveShip }) {
-
-  // const showCoordinates = (e: React.MouseEvent<HTMLElement>) => {
-  //   console.log(e)
-  // }
+export function Ship({ ships, moveShip, changeDirectionShip }) {
 
   return (
     <div>
       {ships.map((item: ShipSize, index: number) =>
 
-        <div className={`ship ship-row-${item.size}`}
+        <div className={`ship ship-${item.direction}-${item.size}`}
           key={index} 
           onMouseMove={(e) => moveShip(item.id, e)}
+          onDoubleClick={() => changeDirectionShip(item.id)}
           style={{ left: item.startX, top: item.startY }}>
         </div>
       )}
