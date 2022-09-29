@@ -1,41 +1,82 @@
-.App {
-  text-align: center;
+.field {
+  margin: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.field-row {
+  position: relative;
+  height: 32px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.field-cell {
+  display: inline-block;
+  border: 1px solid black;
+  width: 32px;
+  height: 32px;
+  box-sizing: border-box;
+}
+.ship {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border: 1px solid #03092b;
+	background: rgba(99, 123, 230, 0.45);
+	width: 32px;
+	height: 32px;
+	box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.selected-ship {
+  background: rgba(211, 181, 224, 0.45);
 }
 
-.App-link {
-  color: #61dafb;
+.preliminary-Position {
+  background: rgba(122, 235, 131, 0.45);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ship-on-field {
+  background: rgba(99, 123, 230, 0.45);
+} 
+
+.row-label {
+  position: absolute;
+  font-size: 17px;
+  right: 100%;
+  top: 15%;
+  padding-right: 3px;
 }
-.pier {
-  height: 500px;
+
+.col-label {
+  position: absolute;
+  padding-left: 7px;
+  width: 100%;
+  bottom: 100%;
+}
+.ship-row-1 {
+}
+
+.ship-row-2 {
+	width: 62px;
+}
+
+.ship-row-3 {
+	width: 94px;
+}
+
+.ship-row-4 {
+	width: 126px;
+}
+
+.ship-column-1 {
+}
+
+.ship-column-2 {
+	height: 62px;
+}
+
+.ship-column-3 {
+	height: 94px;
+}
+
+.ship-column-4 {
+	height: 126px;
 }

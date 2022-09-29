@@ -37,7 +37,7 @@ export function Ships ({
         addingShipToField(item)
         return (
           {...item,
-            additionalClass: 'selected'
+            additionalClass: 'selected-ship'
           })
       } else 
         return item;
