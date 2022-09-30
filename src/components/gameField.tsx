@@ -5,7 +5,8 @@ export interface Cell {
   x: number;
   ship: boolean;
   key: string;
-  preliminaryPosition?: boolean
+  preliminaryPosition?: boolean;
+  errorCordinate?: boolean
 
 };
 
@@ -67,9 +68,7 @@ export function GameField({
     setShipOnDock(newShipsOnDock);
   };
 
-  console.log('field', field);
-
-   const preliminaryPositionShip = (event: React.MouseEvent<HTMLElement>) => {
+  const preliminaryPositionShip = (event: React.MouseEvent<HTMLElement>) => {
     // console.log('event',event.currentTarget.getBoundingClientRect());
     const {x : newX, y: newY} = event.currentTarget.getBoundingClientRect();
     setpreliminaryCordShip({x: newX, y: newY}); 
@@ -84,18 +83,34 @@ export function GameField({
       if (newX !== preX || newY !== preY) {
         setpreliminaryCordShip({x: newX, y: newY}); 
         newField.map(row => 
-          row.map((item) => item.preliminaryPosition = false));
+          row.map((item) => {
+            item.preliminaryPosition = false;
+            item.errorCordinate = false;
+            return item;
+          })
+        );
           setField(newField);  
       };
 
       const {direction, size} = shipOnField[0];
       
-      const conditionLength = x + size;
-
       if (direction === "row") {
-        for (let i = x; i < conditionLength; i++) { 
-          newField[y][i].preliminaryPosition = true;
-        }
+        const conditionLength = x + size;
+
+        if (conditionLength <= row.length) {
+          for (let i = x; i < conditionLength; i++) { 
+            newField[y][i].preliminaryPosition = true;
+          }
+        };
+
+        if (conditionLength > row.length) {
+          for (let i = x; i < conditionLength; i++) { 
+
+            if (newField[y][i]) {
+              newField[y][i].errorCordinate = true;  console.log('field', field)
+            }
+          }
+        };        
       };
 
       setField(newField);
@@ -112,7 +127,9 @@ export function GameField({
           <label className='row-label'>{row[index]}</label>
             {itemRow.map((itemCol, indexCol) =>
               <div className={`field-cell ${itemCol.ship ? 'ship-on-field ' : ''} 
-                ${itemCol.preliminaryPosition ? 'preliminary-Position': ''}`}
+                ${itemCol.preliminaryPosition ? 'preliminary-Position': ''}
+                ${itemCol.errorCordinate ? 'error-cell' : ''}
+                `}
                    key={itemCol.key} 
                    data-x={itemCol.x} 
                    data-y={itemCol.y}
