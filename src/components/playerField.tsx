@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { createField } from "../differentFunction";
 
 export interface Cell {
   y: number;
@@ -10,34 +11,21 @@ export interface Cell {
 
 };
 
-export function GameField({
+export const row = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+export const column = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j', 'k'];
+
+export function PlayerField({
   shipOnField,
   classShip,
   setShipOnField,
   shipOnDock,
   setShipOnDock}:any) {
-  const row = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const column = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j', 'k'];
-
+ 
   const [field, setField] = useState<Cell[][] | []>([]);
   const [preliminaryCordShip, setpreliminaryCordShip] = useState({x:0, y:0})
 
   useEffect(() => {
-    const field = [];
-    for (let i = 0; i < row.length; i++) {
-      const rowOfField = [];
-
-      for (let a = 0; a < column.length; a++) {
-        rowOfField.push({
-          y: i,
-          x: a,
-          ship : false,
-          key: `${column[a]+i}`
-        });
-      };
-
-      field.push(rowOfField);
-    }
+    const field = createField();
     setField(field); 
   }, []);
 
@@ -121,6 +109,7 @@ export function GameField({
  
   return (
     <div className="field">
+      <h4>Your Ships</h4>
       {field.map((itemRow,index) => {
         return (
           <div className='field-row' key={index}>

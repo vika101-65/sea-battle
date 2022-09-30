@@ -1,5 +1,6 @@
 .field {
   margin: 20px;
+  display: inline-block;
 }
 
 .field-row {
@@ -84,4 +85,9 @@
 
 .ship-column-4 {
 	height: 126px;
+}
+
+h4 {
+  text-align: center;
+  margin-top: 0%;
 }

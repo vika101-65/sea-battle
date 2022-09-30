@@ -10,16 +10,16 @@ export interface Ship {
 }
 
 export const shipDatas : Ship[]= [
-	{ size: 4, direction: "row", startX: 10, startY: 345, name: 'four1' },
-	{ size: 3, direction: "row", startX: 10, startY: 390, name: 'three1' },
-	{ size: 3, direction: "row", startX: 120, startY: 390, name: 'three2' },
-	{ size: 2, direction: "row", startX: 10, startY: 435, name: 'two1' },
-	{ size: 2, direction: "row", startX: 88, startY: 435, name: 'two2' },
-	{ size: 2, direction: "row", startX: 167, startY: 435, name: 'two3' },
-	{ size: 1, direction: "row", startX: 10, startY: 480, name: 'one1' },
-	{ size: 1, direction: "row", startX: 55, startY: 480, name: 'one2' },
-	{ size: 1, direction: "row", startX: 100, startY: 480, name: 'one3' },
-	{ size: 1, direction: "row", startX: 145, startY: 480, name: 'one4' },
+	{ size: 4, direction: "row", startX: 10, startY: 385, name: 'four1' },
+	{ size: 3, direction: "row", startX: 10, startY: 420, name: 'three1' },
+	{ size: 3, direction: "row", startX: 120, startY: 420, name: 'three2' },
+	{ size: 2, direction: "row", startX: 10, startY: 465, name: 'two1' },
+	{ size: 2, direction: "row", startX: 88, startY: 465, name: 'two2' },
+	{ size: 2, direction: "row", startX: 167, startY: 465, name: 'two3' },
+	{ size: 1, direction: "row", startX: 10, startY: 510, name: 'one1' },
+	{ size: 1, direction: "row", startX: 55, startY: 510, name: 'one2' },
+	{ size: 1, direction: "row", startX: 100, startY: 510, name: 'one3' },
+	{ size: 1, direction: "row", startX: 145, startY: 510, name: 'one4' },
 ];
 
 export function Ships ({

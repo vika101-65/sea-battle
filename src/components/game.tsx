@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { GameField } from "./gameField";
+import { ComputerField } from "./computerField";
+import { PlayerField } from "./playerField";
 import { Ship, shipDatas, Ships } from "./ships";
 
 export function Game () {
@@ -8,17 +9,18 @@ export function Game () {
   const [shipOnDock, setShipOnDock] = useState(shipDatas);
 
    const addingShipToField = (ship:Ship) => {
-    setShipOnField((prevSpis: Ship[] | []) => {
-      const newShips = [...prevSpis];
-      newShips.push(ship);
-      return newShips;
-    })
+    // setShipOnField((prevSpis: Ship[] | []) => {
+    //   const newShips = [...prevSpis];
+    //   newShips.push(ship);
+    //   return newShips;
+    // })
+    setShipOnField([ship]);
   };
 
   console.log(shipOnField);
   return (
     <>
-     <GameField 
+     <PlayerField 
       shipOnField={shipOnField}
       classShip={classShip}
       setShipOnField={setShipOnField}
@@ -26,6 +28,7 @@ export function Game () {
       shipOnDock={shipOnDock}
 
      />
+     <ComputerField></ComputerField>
      <Ships 
         addingShipToField={addingShipToField}
         setShipOnDock={setShipOnDock}
