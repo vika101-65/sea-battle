@@ -45,47 +45,39 @@ export function ComputerField() {
       const y = Math.floor(Math.random() * shipDatas.length);
       let x = Math.floor(Math.random() * shipDatas.length); console.log('x', x, 'y', y);
       const lastCellShip = x + shipDatas[i].size;
-      const yOccupUp = y -1 >= 0 ?  y - 1 : 0;
-      const yOccupDown = y + 1 <= 9 ? y + 1 : 9;
-      x = lastCellShip >= 9 ? x - lastCellShip + 9 : x;
+      x = lastCellShip > 10 ? x - lastCellShip + 10 : x;
       const sizeShip = shipDatas[i].size;
+      const trackedString = [...newcomputerField[y]];
+      let sum = [];
+      let countEmptyCell = 0;
 
-      const unOccupiedCell = [...newcomputerField[y]].map((item, index) => {
-
-        if (index <= 9 - sizeShip ) {
-          let sum = 0;
-
-          for (let i = index; i < index + sizeShip; i++) {
-            if (item.ship === false || item.occupyСell === false) {
-              sum += 1 ;
-            } 
-          };
-
-          if (sum === shipDatas[i].size) { 
-            return index;
-          }
-          return null;
-        }
-        
-      })
-      console.log('unOccupiedCell', unOccupiedCell)
-      
-
-      // for (let a = x ; a <= x + shipDatas[i].size; a++) {
-      //   sum += unOccupiedCell[x];
-      // } 
-        
-      // console.log('unOccupiedCell', unOccupiedCell, 'sum', sum);
-
-      for (let a = x ; a < x + shipDatas[i].size; a++) {
-        // newcomputerField[y][a]    
-        newcomputerField[y][a].ship = true;
-        newcomputerField[y][a].occupyСell = true;
-        newcomputerField[yOccupUp][a].occupyСell = true;
-        newcomputerField[yOccupDown][a].occupyСell = true;
+      for (let cell = 0; cell <= trackedString.length - sizeShip; cell++) {
+        for (let a = cell; a <cell + sizeShip; a++) {
+          
+          if (trackedString[a].ship === false || 
+              trackedString[a].occupyСell === false) {
+                countEmptyCell +=1;
+          }; 
+        };
+        if (countEmptyCell === sizeShip) {
+          sum.push(cell)
+        };
+        countEmptyCell = 0;
       };
-      
-      };
+
+     console.log('sum', sum)
+      if (sum.includes(x)) {
+        for (let a = x ; a < x + shipDatas[i].size; a++) {
+          newcomputerField[y][a].ship = true;
+        };
+      } else {
+        const rand = Math.floor(Math.random() * sum.length); console.log('rand',rand);
+        x = sum[rand];
+        for (let n = x ; n < x + shipDatas[i].size; n++) {
+          newcomputerField[y][n].ship = true;
+        };
+      }
+    };
     setComputerField(newcomputerField);
     console.log('computerField', computerField);
   }
