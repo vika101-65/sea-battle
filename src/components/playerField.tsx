@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createField } from "../differentFunction";
+import { createField, getCoordinate} from "../differentFunction";
 
 export interface Cell {
   y: number;
@@ -22,7 +22,7 @@ export function PlayerField({
   setShipOnDock}:any) {
  
   const [field, setField] = useState<Cell[][] | []>([]);
-  const [preliminaryCordShip, setpreliminaryCordShip] = useState({x:0, y:0})
+  const [preliminaryCordShip, setpreliminaryCordShip] = useState({x:0, y:0});
 
   useEffect(() => {
     const field = createField();
@@ -30,10 +30,7 @@ export function PlayerField({
   }, []);
 
   const fixShipOnField = (event: React.MouseEvent<HTMLElement>) => {
-    // console.log('+++++++');
-    // console.log('ship',shipOnField );
-    const x = Number(event.currentTarget.getAttribute('data-x'));
-    const y = Number(event.currentTarget.getAttribute('data-y'));
+    const {x, y} = getCoordinate(event);
     const newField = [...field];
 
     newField.map(row => row.map((item) => item.preliminaryPosition = false));
@@ -51,17 +48,19 @@ export function PlayerField({
     }
     setShipOnField([]);
 
-    const newShipsOnDock = [...shipOnDock].filter(item => item.name !== shipOnField[0].name);
-        
-    setShipOnDock(newShipsOnDock);
+    if (shipOnField[0]) {
+      const newShipsOnDock = [...shipOnDock].filter(item => item.name !== shipOnField[0].name);
+      setShipOnDock(newShipsOnDock);
+    };
+
   };
 
-  const preliminaryPositionShip = (event: React.MouseEvent<HTMLElement>) => {
-    // console.log('event',event.currentTarget.getBoundingClientRect());
+   const preliminaryPositionShip = (event: React.MouseEvent<HTMLElement>) => {
     const {x : newX, y: newY} = event.currentTarget.getBoundingClientRect();
     setpreliminaryCordShip({x: newX, y: newY}); 
-    const x = Number(event.currentTarget.getAttribute('data-x'));
-    const y = Number(event.currentTarget.getAttribute('data-y'));
+
+    const {x, y} = getCoordinate(event);
+
     const preX = preliminaryCordShip.x;
     const preY = preliminaryCordShip.y;
     const newField = [...field];
@@ -95,7 +94,7 @@ export function PlayerField({
           for (let i = x; i < conditionLength; i++) { 
 
             if (newField[y][i]) {
-              newField[y][i].errorCordinate = true;  console.log('field', field)
+              newField[y][i].errorCordinate = true;
             }
           }
         };        

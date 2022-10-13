@@ -9,15 +9,9 @@ export function Game () {
   const [shipOnDock, setShipOnDock] = useState(shipDatas);
 
    const addingShipToField = (ship:Ship) => {
-    // setShipOnField((prevSpis: Ship[] | []) => {
-    //   const newShips = [...prevSpis];
-    //   newShips.push(ship);
-    //   return newShips;
-    // })
     setShipOnField([ship]);
   };
 
-  console.log(shipOnField);
   return (
     <>
      <PlayerField 

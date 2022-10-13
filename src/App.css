@@ -43,6 +43,14 @@
   background: rgba(99, 123, 230, 0.45);
 } 
 
+.hurt {
+  background: rgba(230, 42, 67, 0.45);
+}
+
+.miss {
+  background: rgba(77, 74, 74, 0.45);
+}
+
 .row-label {
   position: absolute;
   font-size: 17px;

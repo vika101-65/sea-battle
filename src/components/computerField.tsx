@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { createField } from "../differentFunction";
+import { createField, shoot } from "../differentFunction";
 import { column, row } from "./playerField";
 
 export interface CellComp {
@@ -8,6 +8,8 @@ export interface CellComp {
   ship: boolean;
   key: string;
   occupyСell?: boolean;
+  miss?: boolean;
+  hurt?: boolean;
 };
 
 export interface ShipComp {
@@ -34,16 +36,15 @@ export function ComputerField() {
 
   useEffect(() => {
     const computerField = createField();
-    setComputerField(computerField);
+    setComputerField(computerField); 
   }, [])
-  console.log('computerField', computerField);
-
-  const startGame = () => {
+ 
+  const placeComputerShipsOnField = () => {
     const newcomputerField = [...computerField];
 
     for (let i = 0; i < shipDatas.length; i++) {
       const y = Math.floor(Math.random() * shipDatas.length);
-      let x = Math.floor(Math.random() * shipDatas.length); console.log('x', x, 'y', y);
+      let x = Math.floor(Math.random() * shipDatas.length); 
       const lastCellShip = x + shipDatas[i].size;
       x = lastCellShip > 10 ? x - lastCellShip + 10 : x;
       const sizeShip = shipDatas[i].size;
@@ -65,13 +66,12 @@ export function ComputerField() {
         countEmptyCell = 0;
       };
 
-     console.log('sum', sum)
       if (sum.includes(x)) {
         for (let a = x ; a < x + shipDatas[i].size; a++) {
           newcomputerField[y][a].ship = true;
         };
       } else {
-        const rand = Math.floor(Math.random() * sum.length); console.log('rand',rand);
+        const rand = Math.floor(Math.random() * sum.length); 
         x = sum[rand];
         for (let n = x ; n < x + shipDatas[i].size; n++) {
           newcomputerField[y][n].ship = true;
@@ -79,8 +79,12 @@ export function ComputerField() {
       }
     };
     setComputerField(newcomputerField);
-    console.log('computerField', computerField);
-  }
+  };
+
+  const makeShot = (event: React.MouseEvent) => {
+    const newComputerField = shoot(event, computerField);
+    setComputerField(newComputerField);
+  };  
 
   return (
     <div className="field">
@@ -92,10 +96,14 @@ export function ComputerField() {
             {itemRow.map((itemCol, indexCol) =>
               <div className={`field-cell
                 ${itemCol.ship ? 'ship-on-field' : ''}
+                ${itemCol.hurt ? 'hurt' : ''}
+                ${itemCol.miss ? 'miss' : ''}
               `}
                 key={itemCol.key}
                 data-x={itemCol.x}
                 data-y={itemCol.y}
+                style={{cursor:"crosshair"}}
+                onClick={(e) => makeShot(e)}
               >
                 {index === 0 ? <label className='col-label'>{column[indexCol]}</label> : ''}
               </div>
@@ -103,7 +111,7 @@ export function ComputerField() {
           </div>
         )
       })}
-      <button onClick={startGame}>Start</button>
+      <button onClick={placeComputerShipsOnField}>Place a ship on the field</button>
     </div>
   )
 }
