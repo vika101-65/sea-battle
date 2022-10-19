@@ -21,14 +21,14 @@
 }
 
 .ship {
-	position: absolute;
-	top: 0;
-	left: 0;
-	border: 1px solid #03092b;
-	background: rgba(99, 123, 230, 0.45);
-	width: 32px;
-	height: 32px;
-	box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid #03092b;
+  background: rgba(99, 123, 230, 0.45);
+  width: 32px;
+  height: 32px;
+  box-sizing: border-box;
 }
 
 .selected-ship {
@@ -41,7 +41,7 @@
 
 .ship-on-field {
   background: rgba(99, 123, 230, 0.45);
-} 
+}
 
 .hurt {
   background: rgba(230, 42, 67, 0.45);
@@ -65,37 +65,45 @@
   width: 100%;
   bottom: 100%;
 }
-.ship-row-1 {
-}
+
+.ship-row-1 {}
 
 .ship-row-2 {
-	width: 62px;
+  width: 62px;
 }
 
 .ship-row-3 {
-	width: 94px;
+  width: 94px;
 }
 
 .ship-row-4 {
-	width: 126px;
+  width: 126px;
 }
 
-.ship-column-1 {
-}
+.ship-column-1 {}
 
 .ship-column-2 {
-	height: 62px;
+  height: 62px;
 }
 
 .ship-column-3 {
-	height: 94px;
+  height: 94px;
 }
 
 .ship-column-4 {
-	height: 126px;
+  height: 126px;
 }
 
 h4 {
   text-align: center;
   margin-top: 0%;
+}
+
+
+.ex {
+  @apply bg-slate-300
+  
+  &.do {
+    @apply bg-slate-500
+  }
 }
